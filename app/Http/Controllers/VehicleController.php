@@ -12,7 +12,7 @@ use App\Vehicle;
 use App\VehicleCategory;
 use App\Category;
 
-use App\Transformers\VehichleTransformer;
+use App\Transformers\VehicleTransformer;
 use Illuminate\Http\Request;
 
 class VehicleController extends Controller
@@ -43,11 +43,11 @@ class VehicleController extends Controller
 
         $vehicles = $vehicles->paginate();
 
-        $paginator = Vehichle::with('vehicleCategory.category')->paginate();
+        $paginator = Vehicle::with('vehicleCategory.category')->paginate();
 
         $vehicles = $paginator->getCollection();
 
-        $resource = new Collection($vehicles, new VehichleTransformer);
+        $resource = new Collection($vehicles, new VehicleTransformer);
 
         $resource->setPaginator(new IlluminatePaginatorAdapter($paginator));
 
@@ -58,7 +58,7 @@ class VehicleController extends Controller
     {
         $vehicle = Vehichle::find($id);
 
-        $resource = new Item($vehicle, new VehichleTransformer);
+        $resource = new Item($vehicle, new VehicleTransformer);
 
         return $this->fractal->createData($resource)->toArray();
     }
@@ -96,7 +96,7 @@ class VehicleController extends Controller
         if(!Vehichle::find($request->input('vehicle_id')))
             return $this->errorResponse('Developer not found!', 404);
 
-        $vehicle = Vehichle::findOrFail($request->input('vehicle_id'));
+        $vehicle = Vehicle::findOrFail($request->input('vehicle_id'));
 
         $vehicleCategory = vehicleCategory::where('category_id', $id)->firstOrFail();
 
@@ -123,12 +123,12 @@ class VehicleController extends Controller
           'linkedin' => 'required|unique:developer_contacts,id,'.$request->get('id'),
           'country' => 'required|alpha',
       ]);
-        $vehicle = Vehichle::findOrFail($id);
+        $vehicle = Vehicle::findOrFail($id);
         $vehicle->update($request->all());
 
         if($vehicle){
             //return updated data
-            $resource = new Item(Vehichle::find($id), new VehichleTransformer);
+            $resource = new Item(Vehicle::find($id), new VehichleTransformer);
             return $this->fractal->createData($resource)->toArray();
         }
         //Return error 400 response if updated was not successful
@@ -140,7 +140,7 @@ class VehicleController extends Controller
         if(!Vehichle::find($id))
           return $this->errorResponse('Developer not found!', 404);
 
-        $vehicle = Vehichle::find($id);
+        $vehicle = Vehicle::find($id);
 
         $vehicleCategory = $vehicle->vehicleCategory();
 
