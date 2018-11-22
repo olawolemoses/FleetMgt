@@ -19,7 +19,7 @@ $router->get('/', function () use ($router) {
 $router->group(['prefix' => 'api'], function () use ($router) {
 
   // show all vehicles
-  $router->get('vehicles',  ['uses' => 'VehicleController@showAllvehicles']);
+  $router->get('vehicles',  ['uses' => 'VehicleController@showAllVehicles']);
 
   // show one Vehicle
   $router->get('vehicles/{id}', ['uses' => 'VehicleController@showOneVehicle']);

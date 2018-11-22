@@ -54,9 +54,9 @@ class VehicleController extends Controller
         return $this->fractal->createData($resource)->toArray();
     }
 
-    public function showOneDeveloper($id)
+    public function showOneVehicle($id)
     {
-        $vehicle = Vehichle::find($id);
+        $vehicle = Vehicle::find($id);
 
         $resource = new Item($vehicle, new VehicleTransformer);
 
