@@ -18,7 +18,7 @@ class VehicleTest extends TestCase
         $this->seeJsonStructure([
             'data' => ['*' =>
                 [
-                  "id"
+                  "id",
                   "product_id",
                   "product_name",
                   "brand",
@@ -34,7 +34,6 @@ class VehicleTest extends TestCase
                   "item_condition",
                   'links'
                   ]
-                ]
             ],
             'meta' => [
                 'pagination' => [
@@ -60,7 +59,7 @@ class VehicleTest extends TestCase
         $this->seeJsonStructure(
             ['data' =>
                 [
-                  "id"
+                  "id",
                   "product_id",
                   "product_name",
                   "brand",
@@ -86,19 +85,19 @@ class VehicleTest extends TestCase
         public function testShouldCreateVehicle(){
 
             $parameters = [
-                "product_id": "090-969-080",
-                "product_name": "Pors",
-                "brand": "Peugeot",
-                "body_type": "Big",
-                "color": "White",
-                "no_of_doors": 4,
-                "seating_capacity": 6,
-                "speed": 63.199,
-                "acceleration_time": 1.592,
-                "weight": 174.91,
-                "model_date": "1994-11-12",
-                "item_condition": "Excellent",
-                "purchase_date": "1994-06-26"
+                "product_id"=> "090-969-080",
+                "product_name"=> "Pors",
+                "brand"=> "Peugeot",
+                "body_type"=> "Big",
+                "color"=> "White",
+                "no_of_doors"=> 4,
+                "seating_capacity"=> 6,
+                "speed"=> 63.199,
+                "acceleration_time"=> 1.592,
+                "weight"=> 174.91,
+                "model_date"=> "1994-11-12",
+                "item_condition"=> "Excellent",
+                "purchase_date"=> "1994-06-26"
             ];
 
             $this->post("api/vehicles", $parameters, []);
@@ -106,7 +105,7 @@ class VehicleTest extends TestCase
             $this->seeJsonStructure(
                 ['data' =>
                       [
-                        "id"
+                        "id",
                         "product_id",
                         "product_name",
                         "brand",
@@ -132,26 +131,26 @@ class VehicleTest extends TestCase
          */
         public function testShouldUpdateVehicle(){
             $parameters = [
-              "product_id": "090-969-080",
-                "product_name": "Pors",
-                "brand": "Peugeot",
-                "body_type": "Big",
-                "color": "White",
-                "no_of_doors": 4,
-                "seating_capacity": 6,
-                "speed": 63.199,
-                "acceleration_time": 1.592,
-                "weight": 174.91,
-                "model_date": "1994-11-12",
-                "item_condition": "Excellent",
-                "purchase_date": "1994-06-26"
+              "product_id"=> "090-969-080",
+                "product_name"=> "Pors",
+                "brand"=> "Peugeot",
+                "body_type"=> "Big",
+                "color"=> "White",
+                "no_of_doors"=> 4,
+                "seating_capacity"=> 6,
+                "speed"=> 63.199,
+                "acceleration_time"=> 1.592,
+                "weight"=> 174.91,
+                "model_date"=> "1994-11-12",
+                "item_condition"=> "Excellent",
+                "purchase_date"=> "1994-06-26"
             ];
             $this->put("api/vehicles/5", $parameters, []);
             $this->seeStatusCode(200);
             $this->seeJsonStructure(
                 ['data' =>
                     [
-                      "id"
+                      "id",
                       "product_id",
                       "product_name",
                       "brand",
