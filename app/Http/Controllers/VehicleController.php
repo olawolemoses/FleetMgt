@@ -66,18 +66,24 @@ class VehicleController extends Controller
     public function create(Request $request )
     {
       $this->validate($request, [
-          'firstname' => 'required',
-          'lastname' => 'required',
-          'email' => 'required|email|unique:developer_contacts',
-          'phoneno' => 'required',
-          'skypeid' => 'required|unique:developer_contacts',
-          'linkedin' => 'required|unique:developer_contacts',
-          'country' => 'required|alpha',
+          "product_id"=> 'required|unique:vehicles',
+          "product_name"=> 'required',
+          "brand"=> 'required',
+          "body_type"=> 'required',
+          "color"=> 'required',
+          "no_of_doors"=> 'required',
+          "seating_capacity"=> 'required',
+          "speed"=> 'required',
+          "acceleration_time" => 'required',
+          "weight"=> 'required',
+          "model_date"=> 'required',
+          "purchase_date"=> 'required',
+          "item_condition" => 'required'
       ]);
 
-        $vehicle = Vehichle::create($request->all());
+        $vehicle = Vehicle::create($request->all());
 
-        $resource = new Item($vehicle, new VehichleTransformer);
+        $resource = new Item($vehicle, new VehicleTransformer);
 
         return $this->fractal->createData($resource)->toArray();
     }
@@ -93,7 +99,7 @@ class VehicleController extends Controller
             'vehicle_id' => 'required'
         ]);
 
-        if(!Vehichle::find($request->input('vehicle_id')))
+        if(!Vehicle::find($request->input('vehicle_id')))
             return $this->errorResponse('Developer not found!', 404);
 
         $vehicle = Vehicle::findOrFail($request->input('vehicle_id'));
@@ -115,20 +121,26 @@ class VehicleController extends Controller
     public function update( Request $request, $id)
     {
       $this->validate($request, [
-          'firstname' => 'required',
-          'lastname' => 'required',
-          'email' => 'required|email|unique:developer_contacts,id,'.$request->get('id'),
-          'phoneno' => 'required',
-          'skypeid' => 'required|unique:developer_contacts,id,'.$request->get('id'),
-          'linkedin' => 'required|unique:developer_contacts,id,'.$request->get('id'),
-          'country' => 'required|alpha',
+            "product_id"=> 'required|unique:vehicles,id,'.$request->get('id'),
+            "product_name"=> 'required',
+            "brand"=> 'required',
+            "body_type"=> 'required',
+            "color"=> 'required',
+            "no_of_doors"=> 'required',
+            "seating_capacity"=> 'required',
+            "speed"=> 'required',
+            "acceleration_time" => 'required',
+            "weight"=> 'required',
+            "model_date"=> 'required',
+            "purchase_date"=> 'required',
+            "item_condition" => 'required'
       ]);
         $vehicle = Vehicle::findOrFail($id);
         $vehicle->update($request->all());
 
         if($vehicle){
             //return updated data
-            $resource = new Item(Vehicle::find($id), new VehichleTransformer);
+            $resource = new Item(Vehicle::find($id), new VehicleTransformer);
             return $this->fractal->createData($resource)->toArray();
         }
         //Return error 400 response if updated was not successful
@@ -137,7 +149,7 @@ class VehicleController extends Controller
 
     public function delete($id)
     {
-        if(!Vehichle::find($id))
+        if(!Vehicle::find($id))
           return $this->errorResponse('Developer not found!', 404);
 
         $vehicle = Vehicle::find($id);

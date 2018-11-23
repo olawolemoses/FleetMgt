@@ -19,6 +19,7 @@ class VehicleTransformer extends Fractal\TransformerAbstract
 	        'speed'    =>  $vehicle->speed,
 	        'acceleration_time'    =>  $vehicle->acceleration_time,
 	        'weight'    =>  $vehicle->weight,
+					'item_condition'    =>  $vehicle->item_condition,
 	        'model_date'    =>  $vehicle->model_date,
 	        'purchase_date'    =>  $vehicle->purchase_date,
             'links'   => [

@@ -31,7 +31,8 @@ class VehicleTest extends TestCase
                   "weight",
                   "model_date",
                   "purchase_date",
-                  "links"
+                  "item_condition",
+                  'links'
                   ]
                 ]
             ],
@@ -72,6 +73,7 @@ class VehicleTest extends TestCase
                   "weight",
                   "model_date",
                   "purchase_date",
+                  "item_condition",
                   'links'
                 ]
             ]
@@ -79,23 +81,24 @@ class VehicleTest extends TestCase
     }
 
     /**
-         * api/category/ [POST]
+         * api/vehicles/ [POST]
          */
         public function testShouldCreateVehicle(){
 
             $parameters = [
-                  "product_id"=> "101-739-031",
-                  "product_name"=> "Land King",
-                  "brand"=> "Beijing",
-                  "body_type"=> "SUV",
-                  "color"=> "White",
-                  "no_of_doors"=> 4,
-                  "seating_capacity"=> 6,
-                  "speed"=> 89.245,
-                  "acceleration_time"=> 0.587,
-                  "weight"=> 751.41,
-                  "model_date"=> "1984-11-19",
-                  "purchase_date"=> "2004-04-03"
+                "product_id": "090-969-080",
+                "product_name": "Pors",
+                "brand": "Peugeot",
+                "body_type": "Big",
+                "color": "White",
+                "no_of_doors": 4,
+                "seating_capacity": 6,
+                "speed": 63.199,
+                "acceleration_time": 1.592,
+                "weight": 174.91,
+                "model_date": "1994-11-12",
+                "item_condition": "Excellent",
+                "purchase_date": "1994-06-26"
             ];
 
             $this->post("api/vehicles", $parameters, []);
@@ -116,6 +119,7 @@ class VehicleTest extends TestCase
                         "weight",
                         "model_date",
                         "purchase_date",
+                        "item_condition",
                         'links'
                       ]
                 ]
@@ -128,18 +132,19 @@ class VehicleTest extends TestCase
          */
         public function testShouldUpdateVehicle(){
             $parameters = [
-                "product_id"=> "101-739-031",
-                "product_name"=> "Land King",
-                "brand"=> "Beijing",
-                "body_type"=> "SUV",
-                "color"=> "White",
-                "no_of_doors"=> 4,
-                "seating_capacity"=> 6,
-                "speed"=> 89.245,
-                "acceleration_time"=> 0.587,
-                "weight"=> 751.41,
-                "model_date"=> "1984-11-19",
-                "purchase_date"=> "2004-04-03"
+              "product_id": "090-969-080",
+                "product_name": "Pors",
+                "brand": "Peugeot",
+                "body_type": "Big",
+                "color": "White",
+                "no_of_doors": 4,
+                "seating_capacity": 6,
+                "speed": 63.199,
+                "acceleration_time": 1.592,
+                "weight": 174.91,
+                "model_date": "1994-11-12",
+                "item_condition": "Excellent",
+                "purchase_date": "1994-06-26"
             ];
             $this->put("api/vehicles/5", $parameters, []);
             $this->seeStatusCode(200);
@@ -159,6 +164,7 @@ class VehicleTest extends TestCase
                       "weight",
                       "model_date",
                       "purchase_date",
+                      "item_condition",
                       'links'
                     ]
                 ]

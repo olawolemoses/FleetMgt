@@ -13,7 +13,19 @@ class Vehicle extends Model
      * @var array
      */
     protected $fillable = [
-        'firstname', 'lastname', 'email', 'phoneno', 'skypeid', 'linkedin', 'country'
+        "product_id",
+        "product_name",
+        "brand",
+        "body_type",
+        "color",
+        "no_of_doors",
+        "seating_capacity",
+        "speed",
+        "acceleration_time",
+        "weight",
+        "model_date",
+        "item_condition",
+        "purchase_date"
     ];
 
     /**
